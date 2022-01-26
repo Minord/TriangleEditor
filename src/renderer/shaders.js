@@ -1,24 +1,31 @@
+/*Variables that store the names of the attribs
+position and uniforms this is here because*/
+const positionAttribName = 'position';
+const colorAttribName = 'color';
+const projectionUniformName = 'projectionMatrix';
+
+
 /*This is the vertex shader this shader
-  only tranform the triangles based on the
-  the projection matrix and define color
-  for  fragment shader.*/
+only tranform the triangles based on the
+the projection matrix and define color
+for  fragment shader.*/
 const vertexShaderSource = `
-  attribute vec4 position;
-  attribute vec4 color;
+  attribute vec4 ${positionAttribName};
+  attribute vec4 ${colorAttribName};
   
-  uniform mat4 projectionMatrix;
+  uniform mat4 ${projectionUniformName};
 
   varying lowp vec4 result_color;
 
   void main(void) {
-    gl_Position = projectionMatrix * position;
+    gl_Position = ${projectionUniformName} * ${positionAttribName};
     result_color = color;
   }
 `;
 
 /*This fragment shader only set the color
-  of the color the one pased for the vertex
-  shader.*/
+of the color the one pased for the vertex
+shader.*/
 const fragmentShaderSource = `
   varying lowp vec4 result_color;
   void main(void) {
@@ -26,9 +33,22 @@ const fragmentShaderSource = `
   }
 `;
 
-
-function getShaderProgram(gl) {
-  return buildShaderProgram(gl, vertexShaderSource, fragmentShaderSource);
+/*This is a function that give
+the default shader program defined
+on this file*/
+function getShaderProgramInfo(gl) {
+  const shaderProgram = buildShaderProgram(gl, vertexShaderSource, fragmentShaderSource);
+  const shaderProgramInfo = {
+    program: shaderProgram,
+    attribLocations: {
+      vextexPosition: gl.getAttribLocation(shaderProgram, vertexAttribName);
+      vertexColor: gl.getAttribLocation(shaderProgram, colorAttribName);
+    },
+    uniformLocations: {
+      projectionMatrix: gl.getUniformLocation(shaderProgram, projectionUniformName);
+    }
+  };
+  return shaderProgramInfo;
 }
 
 
