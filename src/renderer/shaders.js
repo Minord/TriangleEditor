@@ -41,11 +41,11 @@ function getShaderProgramInfo(gl) {
   const shaderProgramInfo = {
     program: shaderProgram,
     attribLocations: {
-      vextexPosition: gl.getAttribLocation(shaderProgram, vertexAttribName);
-      vertexColor: gl.getAttribLocation(shaderProgram, colorAttribName);
+      vextexPosition: gl.getAttribLocation(shaderProgram, positionAttribName),
+      vertexColor: gl.getAttribLocation(shaderProgram, colorAttribName)
     },
     uniformLocations: {
-      projectionMatrix: gl.getUniformLocation(shaderProgram, projectionUniformName);
+      projectionMatrix: gl.getUniformLocation(shaderProgram, projectionUniformName)
     }
   };
   return shaderProgramInfo;
@@ -78,7 +78,7 @@ function buildShaderProgram(gl, vertexSource, fragmentSource) {
   gl.attachShader(shaderProgram, fragmentShader);
   gl.linkProgram(shaderProgram);
   //Check for link errors
-  if (!gl.getProgramParameter(shaderProgram, gl.LINK_SHADER)){
+  if (!gl.getProgramParameter(shaderProgram, gl.LINK_STATUS)){
     console.log('Unable to initialize the shader program: ' +
                 gl.getProgramInfoLog(shaderProgram));
     return null;
@@ -87,4 +87,4 @@ function buildShaderProgram(gl, vertexSource, fragmentSource) {
 }
 
 
-export {getShaderProgram, buildShaderProgram};
+export {getShaderProgramInfo, buildShaderProgram};

@@ -1,10 +1,12 @@
-import initBuffers from 'buffers.js';
-import getShaderProgramInfo from 'shader.js';
+import { initBuffers } from './buffers.js';
+import { getShaderProgramInfo } from './shaders.js';
 
 class RenderEngine {
     constructor(canvas) {
       //get the context
-      this.gl = convas.getContext('webgl');
+      this.gl = canvas.getContext('webgl');
+      //For avoid the use of this.gl
+      const gl = this.gl;
       //Check for gl existance
       if (!gl) {
         console.log('Unable to initialize WebGL, Your browser or machine may not support it.');
@@ -55,8 +57,13 @@ class RenderEngine {
       }
     }
     
-    render(projection, vertexs, indices, colors) {
-      gl.clearColor(background_color...);
+    render(projection=null, vertexs=null, indices=null, colors=null) {
+      //For avoid the repite use of this.gl
+      const gl = this.gl;
+      gl.clearColor(this.background_color[0],
+                    this.background_color[1],
+                    this.background_color[2],
+                    this.background_color[3]);
       gl.clearDepth(1.0);
       gl.enable(gl.DEPTH_TEST);
       gl.depthFunc(gl.LEQUAL);
@@ -64,11 +71,13 @@ class RenderEngine {
       gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
       //Update Camera Uniform Data
-      gl.uniformMatrix4fv(
-        this.shaderProgramInfo.uniformLocations.projectionMatrix,
-        false,
-        projection
-      );
+      if (projection) {
+        gl.uniformMatrix4fv(
+          this.shaderProgramInfo.uniformLocations.projectionMatrix,
+          false,
+          projection
+        );
+      }
       //Update Buffers Data
       if (vertexs) {
         gl.bindBuffer(gl.ARRAY_BUFFER, this.buffers.vertex);
@@ -85,10 +94,13 @@ class RenderEngine {
       
       //Render
       gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, this.buffers.indices);
-      gl.useProgram(this.shaderProgramInfor.program);
+      gl.useProgram(this.shaderProgramInfo.program);
       const vertexCount = 0;
       const type = gl.UNSIGNED_SHORT;
       const offset = 0;
       gl.drawElements(gl.TRIANGLES, vertexCount, type, offset);
     }
 };
+
+
+export {RenderEngine};
