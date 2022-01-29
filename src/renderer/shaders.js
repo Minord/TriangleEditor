@@ -38,10 +38,11 @@ the default shader program defined
 on this file*/
 function getShaderProgramInfo(gl) {
   const shaderProgram = buildShaderProgram(gl, vertexShaderSource, fragmentShaderSource);
+  
   const shaderProgramInfo = {
     program: shaderProgram,
     attribLocations: {
-      vextexPosition: gl.getAttribLocation(shaderProgram, positionAttribName),
+      vertexPosition: gl.getAttribLocation(shaderProgram, positionAttribName),
       vertexColor: gl.getAttribLocation(shaderProgram, colorAttribName)
     },
     uniformLocations: {

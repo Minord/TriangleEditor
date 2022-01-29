@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import "./App.css";
 
 import { RenderEngine } from "./renderer/engine.js";
+import { Camera } from "./renderer/camera.js";
 
 class CanvasEditor extends Component {
     constructor(props) {
@@ -24,7 +25,29 @@ class CanvasEditor extends Component {
     //the canvas in OpenGL
     componentDidMount() {
         this.engine = new RenderEngine(this.canvasRef.current); 
-        this.engine.render(); //Should be black
+        let camera = new Camera();
+        camera.width = 500;
+        camera.height = 350;
+        camera.z = -6;
+        
+        let projection = camera.calculateProjectionMatrix();
+        let vertexs = new Float32Array([
+            -1.0, -1.0, -1.0,
+            1.0, -1.0, -1.0,
+            1.0, 1.0, -1.0
+        ]);
+        let indices = new Uint16Array([
+            0, 1, 2
+        ]);
+        let colors = new Float32Array([
+            1.0, 1.0, 1.0, 1.0,
+            1.0, 1.0, 1.0, 1.0,
+            1.0, 1.0, 1.0, 1.0
+        ]);
+        this.engine.render(projection = projection,
+                           vertexs = vertexs,
+                           indices = indices,
+                           colors = colors);
     }
 }
 
