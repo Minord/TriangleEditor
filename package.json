@@ -23,6 +23,7 @@
     "webpack-dev-server": "^3.1.8"
   },
   "dependencies": {
+    "ecsy": "^0.4.2",
     "gl-matrix": "^3.4.3",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",

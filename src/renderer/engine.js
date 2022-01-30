@@ -15,7 +15,7 @@ class RenderEngine {
       //Link Shaders
       this.shaderProgramInfo = getShaderProgramInfo(gl);
       this.buffers = initBuffers(gl);
-      this.background_color = [0.5, 0.5, 1.0, 1.0];
+      this.backgroundColor = [0.0, 0.0, 0.0, 1.0];
 
       //Link Buffers with vertex shader Attribs
 
@@ -24,10 +24,10 @@ class RenderEngine {
     render(projection=null, vertexs=null, indices=null, colors=null) {
       //For avoid the repite use of this.gl
       const gl = this.gl;
-      gl.clearColor(this.background_color[0],
-                    this.background_color[1],
-                    this.background_color[2],
-                    this.background_color[3]);
+      gl.clearColor(this.backgroundColor[0],
+                    this.backgroundColor[1],
+                    this.backgroundColor[2],
+                    this.backgroundColor[3]);
       gl.clearDepth(1.0);
       gl.enable(gl.DEPTH_TEST);
       gl.depthFunc(gl.LEQUAL);

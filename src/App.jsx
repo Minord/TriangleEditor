@@ -25,6 +25,7 @@ class CanvasEditor extends Component {
     //the canvas in OpenGL
     componentDidMount() {
         this.engine = new RenderEngine(this.canvasRef.current); 
+        this.engine.backgroundColor = [0.9, 0.9, 1.0, 1.0];
         let camera = new Camera();
         camera.width = 500;
         camera.height = 350;
@@ -32,7 +33,7 @@ class CanvasEditor extends Component {
         
         let projection = camera.calculateProjectionMatrix();
         let vertexs = new Float32Array([
-            -1.0, -1.0, -1.0,
+            -1.0, -2.0, -1.0,
             1.0, -1.0, -1.0,
             1.0, 1.0, -1.0
         ]);
@@ -40,9 +41,9 @@ class CanvasEditor extends Component {
             0, 1, 2
         ]);
         let colors = new Float32Array([
-            1.0, 1.0, 1.0, 1.0,
-            1.0, 1.0, 1.0, 1.0,
-            1.0, 1.0, 1.0, 1.0
+            0.4, 0.4, 0.6, 1.0,
+            0.4, 0.4, 0.6, 1.0,
+            0.8, 0.8, 1.0, 1.0,
         ]);
         this.engine.render(projection = projection,
                            vertexs = vertexs,
