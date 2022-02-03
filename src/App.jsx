@@ -4,6 +4,8 @@ import "./App.css";
 import { RenderEngine } from "./renderer/engine.js";
 import { Camera } from "./renderer/camera.js";
 
+import { RenderLoop } from "./RenderLoop.js";
+
 class CanvasEditor extends Component {
     constructor(props) {
         super(props);
@@ -49,6 +51,9 @@ class CanvasEditor extends Component {
                            vertexs = vertexs,
                            indices = indices,
                            colors = colors);
+        let renderLoop = new RenderLoop;
+        renderLoop.startLoop();
+        console.log("it pass");
     }
 }
 
