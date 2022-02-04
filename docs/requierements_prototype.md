@@ -56,11 +56,3 @@ A web application that give us graphical tools for create and work with triangle
 * Fast
 * Color Material
 
-
-## Geometry Editor Features
-
-???
-
-## Color Editor Features
-
-??? 

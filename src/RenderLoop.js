@@ -1,8 +1,8 @@
 class RenderLoop {
   constructor() {
     this.running = false;
-    this.lastTime = performance.now();
     this.animationRequestId = undefined;
+    this.renderFunction = () => {};
   }
 
   startLoop() {
@@ -11,10 +11,9 @@ class RenderLoop {
     let renderLoop = this;
     function loop() { 
       renderLoop.animationRequestId = undefined;
-      let time = performance.now();
-      let delta = time - renderLoop.lastTime;
     
-      //Here is were the render logic goes here
+      //Execure Render Function CallBack
+      renderLoop.renderFunction();
       
       if (renderLoop.running) {
         renderLoop.startLoop();
