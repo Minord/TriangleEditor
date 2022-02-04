@@ -17,8 +17,44 @@ class RenderEngine {
       this.buffers = initBuffers(gl);
       this.backgroundColor = [0.0, 0.0, 0.0, 1.0];
 
-      //Link Buffers with vertex shader Attribs
-
+      //Link Buffers with vertex shader Attribs 
+      //Vertex Buffer
+      {
+        const numComponents = 3;
+        const type = gl.FLOAT;
+        const normalize = false;
+        const stride = 0;
+        const offset = 0;
+        gl.bindBuffer(gl.ARRAY_BUFFER, this.buffers.vertex);
+        gl.vertexAttribPointer(
+          this.shaderProgramInfo.attribLocations.vertexPosition,
+          numComponents,
+          type,
+          normalize,
+          stride,
+          offset);
+        gl.enableVertexAttribArray(
+          this.shaderProgramInfo.attribLocations.vertexPosition);
+      } 
+      //Color Buffer
+      {
+        const numComponents = 4;
+        const type = gl.FLOAT;
+        const normalize = false;
+        const stride = 0;
+        const offset = 0;
+        gl.bindBuffer(gl.ARRAY_BUFFER, this.buffers.color);
+        gl.vertexAttribPointer(
+          this.shaderProgramInfo.attribLocations.vertexColor,
+          numComponents,
+          type,
+          normalize,
+          stride,
+          offset);
+        gl.enableVertexAttribArray(
+          this.shaderProgramInfo.attribLocations.vertexColor);
+      } 
+      gl.useProgram(this.shaderProgramInfo.program);
     }
     
     render(projection=null, vertexs=null, indices=null, colors=null) {
@@ -39,53 +75,15 @@ class RenderEngine {
         gl.bindBuffer(gl.ARRAY_BUFFER, this.buffers.vertex);
         gl.bufferData(gl.ARRAY_BUFFER, vertexs, gl.STATIC_DRAW);
 
-        //Vertex Buffer
-        {
-          const numComponents = 3;
-          const type = gl.FLOAT;
-          const normalize = false;
-          const stride = 0;
-          const offset = 0;
-          gl.bindBuffer(gl.ARRAY_BUFFER, this.buffers.vertex);
-          gl.vertexAttribPointer(
-            this.shaderProgramInfo.attribLocations.vertexPosition,
-            numComponents,
-            type,
-            normalize,
-            stride,
-            offset);
-          gl.enableVertexAttribArray(
-            this.shaderProgramInfo.attribLocations.vertexPosition);
-        }
       }
       if (colors) {
         gl.bindBuffer(gl.ARRAY_BUFFER, this.buffers.color);
         gl.bufferData(gl.ARRAY_BUFFER, colors, gl.STATIC_DRAW);   
-        //Color Buffer
-        {
-          const numComponents = 4;
-          const type = gl.FLOAT;
-          const normalize = false;
-          const stride = 0;
-          const offset = 0;
-          gl.bindBuffer(gl.ARRAY_BUFFER, this.buffers.color);
-          gl.vertexAttribPointer(
-            this.shaderProgramInfo.attribLocations.vertexColor,
-            numComponents,
-            type,
-            normalize,
-            stride,
-            offset);
-          gl.enableVertexAttribArray(
-            this.shaderProgramInfo.attribLocations.vertexColor);
-        }
       }
       if (indices) {
         gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, this.buffers.indices);
         gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, indices, gl.STATIC_DRAW); 
       }
-
-      gl.useProgram(this.shaderProgramInfo.program);
 
       //Update Camera Uniform Data
       if (projection) {
