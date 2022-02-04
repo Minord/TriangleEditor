@@ -60,6 +60,8 @@ class RenderEngine {
     render(projection=null, vertexs=null, indices=null, colors=null) {
       //For avoid the repite use of this.gl
       const gl = this.gl;
+
+      gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
       gl.clearColor(this.backgroundColor[0],
                     this.backgroundColor[1],
                     this.backgroundColor[2],

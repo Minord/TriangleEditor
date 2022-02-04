@@ -9,34 +9,40 @@ import { RenderLoop } from "./RenderLoop.js";
 
 class Editor {
 
-  constructor(canvasElement) {
-    this.renderEngine = new RenderEngine(canvasElement);
-    this.renderLoop = new RenderLoop();
+constructor(canvasElement) {
+  this.renderEngine = new RenderEngine(canvasElement);
+  this.renderLoop = new RenderLoop();
+  this.camera = new Camera();
+  this.canvasElement = canvasElement;
 
-    
-    this.renderEngine.backgroundColor = [0.9, 0.9, 1.0, 1.0];
-    let camera = new Camera();
-    let engine = this.renderEngine;
-    camera.width = 500;
-    camera.height = 350;
-    camera.z = -6;
+  window.addEventListener('resize', () => {
+    this.canvasElement.width = window.innerWidth;
+    this.canvasElement.height = window.innerHeight;
+    this.camera.width = this.canvasElement.width;
+    this.camera.height = this.canvasElement.height;
+  });
+  
+  this.renderEngine.backgroundColor = [0.9, 0.9, 0.9, 1.0];
+  this.camera.width = canvasElement.width;
+  this.camera.height = canvasElement.height;
+  this.camera.z = -6;
 
-    this.renderLoop.renderFunction = () => {      
-        let projection = camera.calculateProjectionMatrix();
+  this.renderLoop.renderFunction = () => {      
+        let projection = this.camera.calculateProjectionMatrix();
         let vertexs = new Float32Array([
             -1.0, -2.0, -1.0,
             1.0, -1.0, -1.0,
-            Math.random(), Math.random(), -1.0
+            -1.0, Math.sin(performance.now()*0.001), -1.0
         ]);
         let indices = new Uint16Array([
             0, 1, 2
         ]);
         let colors = new Float32Array([
-            0.4, 0.4, 0.6, 1.0,
-            0.4, 0.4, 0.6, 1.0,
-            0.8, 0.8, 1.0, 1.0,
+            0.4, 1.0, 0.6, 1.0,
+            0.7, 0.4, 0.6, 1.0,
+            0.8, 0.8, Math.cos(performance.now() * 0.01), 1.0,
         ]);
-        engine.render(projection = projection,
+        this.renderEngine.render(projection = projection,
                            vertexs = vertexs,
                            indices = indices,
                            colors = colors);
@@ -50,6 +56,11 @@ class Editor {
 
   stop() {
     this.renderLoop.stopLoop();
+  }
+
+  resizeCanvas() {
+    this.camera.width = this.canvasElement.width;
+    this.camera.height = this.canvasElement.height;
   }
 }
 

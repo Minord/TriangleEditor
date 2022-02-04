@@ -11,10 +11,13 @@ class CanvasEditor extends Component {
     }
 
     render() {
+        function canvasResize() {
+            console.log("Resize");
+        }
         return(
-            <canvas id="canvas-poly-1"
-                    width="500"
-                    height="350"
+            <canvas className="EditorCanvas"
+                    width={window.innerWidth}
+                    height={window.innerHeight}
                     ref={this.canvasRef}>
             </canvas>
         );
@@ -24,13 +27,18 @@ class CanvasEditor extends Component {
         this.editor = new Editor(this.canvasRef.current);
         this.editor.run();
     }
+
+    componentWillUnmount() {
+        this.editor.stop();
+        this.editor = null;
+    }
 }
 
 class App extends Component {
     render(){
         return(
             <div className="App">
-                <h1> Hello, World! </h1>
+                <h1> Hello World Again </h1>
                 <CanvasEditor/>
             </div>
         );
