@@ -1,49 +1,22 @@
 import React, {Component} from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 
-import { Editor } from "./Editor.js";
-
-class CanvasEditor extends Component {
-    constructor(props) {
-        super(props);
-        this.canvasRef = React.createRef();
-        this.editor = null;
-    }
-
-    render() {
-        function canvasResize() {
-            console.log("Resize");
-        }
-        return(
-            <canvas className="EditorCanvas"
-                    width={window.innerWidth}
-                    height={window.innerHeight}
-                    ref={this.canvasRef}>
-            </canvas>
-        );
-    }
-    
-    componentDidMount() {
-        this.editor = new Editor(this.canvasRef.current);
-        this.editor.run();
-    }
-
-    componentWillUnmount() {
-        this.editor.stop();
-        this.editor = null;
-    }
-}
+import EditorApp from "./EditorApp.jsx";
+import Lab from "./Lab.jsx";
 
 class App extends Component {
     render(){
         return(
-            <div className="App">
-                <h1> Hello World Again </h1>
-                <CanvasEditor/>
-            </div>
+            <BrowserRouter>
+                <Routes>
+                    <Route path="/" element={<h1>Home</h1>} />
+                    <Route path="app" element={<EditorApp />} />
+                    <Route path="lab" element={<Lab />} />
+                </Routes>
+            </BrowserRouter>
         );
     }
 }
-
 
 export default App;

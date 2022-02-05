@@ -16,4 +16,12 @@ This component has to be capable of adding new tools to the cointanier
 be capable of grow or shink to a certain level. and let the user deside
 the order that the tool bar will be.
 
+**Mover tool**:
+Then the tool as to be capable of moving any other of the element to any
+site width the objetive of making it work.
 
+**Delete tool**:
+The use has to be capable of removing some tools of the tool bar maybe
+one option can ve a trash panel that delete its features form it place.
+
+**Tool Library**:
