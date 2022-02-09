@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 
 import Tool from "./react-components/Tool.jsx";
-/* This component give us the chanse
- * of creating an isolated and cofigurable
- * enviroment for developing and testing 
- *
-*/
+import Tools from "./react-components/Tools.jsx";
+import icons from "./utils/icons.js";
+
 class Lab extends Component {
     constructor(props) {
         super(props);
@@ -15,7 +13,11 @@ class Lab extends Component {
         return(
             <React.Fragment>
                 <h1> Lab </h1>
-                <Tool />
+                <Tools>
+                    <Tool iconUrl={icons.MeshToolIcon}/>
+                    <Tool iconUrl={icons.TriangleToolIcon}/>
+                    <Tool iconUrl={icons.VertexToolIcon}/>
+                </Tools>
             </React.Fragment>
         );
     }

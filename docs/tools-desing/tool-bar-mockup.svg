@@ -445,8 +445,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.90509668"
-     inkscape:cx="688.03272"
-     inkscape:cy="515.56476"
+     inkscape:cx="789.17629"
+     inkscape:cy="586.51188"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      inkscape:document-rotation="0"
@@ -465,7 +465,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -650,7 +650,7 @@
        xml:space="preserve"
        id="text2099"
        style="font-style:normal;font-weight:normal;font-size:8.46667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect2101);fill:#000000;fill-opacity:1;stroke:none;"
-       transform="translate(98.817623,134.15025)"><tspan
+       transform="translate(5.841954,4.2067552)"><tspan
          x="7.5820312"
          y="12.170706"><tspan
            style="shape-inside:url(#rect2101)">Tool Bar Mockup</tspan></tspan></text>
