@@ -1,4 +1,14 @@
 
+.toolContainer {
+  background-color: #fff;
+  border-color: #111;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 5px;
+  display: fixed flex;
+  
+}
+
 .toolButton {
   background-color: #999;
   width: 50px;
@@ -22,3 +32,4 @@
   margin: 0;
   margin-left: 5px;
 }
+

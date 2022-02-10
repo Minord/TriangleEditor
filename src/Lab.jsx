@@ -14,9 +14,10 @@ class Lab extends Component {
             <React.Fragment>
                 <h1> Lab </h1>
                 <Tools>
-                    <Tool iconUrl={icons.MeshToolIcon}/>
-                    <Tool iconUrl={icons.TriangleToolIcon}/>
-                    <Tool iconUrl={icons.VertexToolIcon}/>
+                    <Tool />
+                    <Tool iconUrl={icons.meshTool}/>
+                    <Tool iconUrl={icons.triangleTool}/>
+                    <Tool iconUrl={icons.vertexTool}/>
                 </Tools>
             </React.Fragment>
         );

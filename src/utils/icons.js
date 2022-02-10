@@ -12,6 +12,9 @@ var iconsUrl = host + "/icons/";
 
 var icons = {
   defaultTool : iconsUrl + "default-tool.svg",
+  meshTool : iconsUrl + "mesh-tool.svg",
+  triangleTool : iconsUrl + "triangle-tool.svg",
+  vertexTool : iconsUrl + "vertex-tool.svg"
 };
 
 export default icons;
